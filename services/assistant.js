@@ -48,6 +48,17 @@ import axios from 'axios';
 import config from '../config/index.js';
 import { handleFulfilled, handleRejected, handleRequest } from './utils/index.js';
 
+// 角色常數定義
+export const ROLES = {
+  USER: 'user',
+  ASSISTANT: 'assistant',
+  // 注意：Assistant API 不支持 system role，系統指令應該在 instructions 中設定
+};
+
+// 為了向後兼容，也可以單獨導出
+export const ROLE_USER = ROLES.USER;
+export const ROLE_ASSISTANT = ROLES.ASSISTANT;
+
 const client = axios.create({
   baseURL: config.OPENAI_BASE_URL,
   timeout: config.OPENAI_TIMEOUT,
@@ -219,6 +230,11 @@ const createAndRun = async ({ threadId, assistantId, instructions, content }) =>
 };
 
 export {
+  // 角色常數
+  ROLES,
+  ROLE_USER,
+  ROLE_ASSISTANT,
+  // API 函數
   createThread,
   deleteThread,
   createMessage,
