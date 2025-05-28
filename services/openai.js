@@ -20,6 +20,22 @@ export const MODEL_GPT_4_OMNI = 'gpt-4o';
 export const MODEL_WHISPER_1 = 'whisper-1';
 export const MODEL_DALL_E_3 = 'dall-e-3';
 
+const createSystemMessage = (content) => ({
+  role: ROLE_SYSTEM,
+  content,
+});
+
+const createAssistantMessage = (content) => ({
+  role: ROLE_AI,
+  content,
+});
+
+const createUserMessage = (content) => ({
+  role: ROLE_HUMAN,
+  content,
+});
+
+
 const client = axios.create({
   baseURL: config.OPENAI_BASE_URL,
   timeout: config.OPENAI_TIMEOUT,
@@ -100,18 +116,6 @@ const createAudioTranscriptions = ({
 };
 
 export {
-  ROLE_SYSTEM,
-  ROLE_AI,
-  ROLE_HUMAN,
-  FINISH_REASON_STOP,
-  FINISH_REASON_LENGTH,
-  IMAGE_SIZE_256,
-  IMAGE_SIZE_512,
-  IMAGE_SIZE_1024,
-  MODEL_GPT_3_5_TURBO,
-  MODEL_GPT_4_OMNI,
-  MODEL_WHISPER_1,
-  MODEL_DALL_E_3,
   createAudioTranscriptions,
   createChatCompletion,
   createImage,
