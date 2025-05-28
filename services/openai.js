@@ -20,22 +20,6 @@ export const MODEL_GPT_4_OMNI = 'gpt-4o';
 export const MODEL_WHISPER_1 = 'whisper-1';
 export const MODEL_DALL_E_3 = 'dall-e-3';
 
-const createSystemMessage = (content) => ({
-  role: ROLE_SYSTEM,
-  content,
-});
-
-const createAssistantMessage = (content) => ({
-  role: ROLE_AI,
-  content,
-});
-
-const createUserMessage = (content) => ({
-  role: ROLE_HUMAN,
-  content,
-});
-
-
 const client = axios.create({
   baseURL: config.OPENAI_BASE_URL,
   timeout: config.OPENAI_TIMEOUT,
