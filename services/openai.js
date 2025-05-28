@@ -100,6 +100,18 @@ const createAudioTranscriptions = ({
 };
 
 export {
+  ROLE_SYSTEM,
+  ROLE_AI,
+  ROLE_HUMAN,
+  FINISH_REASON_STOP,
+  FINISH_REASON_LENGTH,
+  IMAGE_SIZE_256,
+  IMAGE_SIZE_512,
+  IMAGE_SIZE_1024,
+  MODEL_GPT_3_5_TURBO,
+  MODEL_GPT_4_OMNI,
+  MODEL_WHISPER_1,
+  MODEL_DALL_E_3,
   createAudioTranscriptions,
   createChatCompletion,
   createImage,
