@@ -40,11 +40,24 @@ const generateCompletion = async ({
   if (config.APP_ENV !== 'production') return new Completion({ text: MOCK_TEXT_OK });
   if (config.OPENAI_ASSISTANT_ID) {
     const { data: thread } = await createThread();
-    await Promise.all(prompt.messages.map(({ role, content }) => {
-      const text = Array.isArray(content) ? content[0].text : content;
-      return createMessage({ threadId: thread.id, role, content: text });
-    }));
-    const { data: run } = await createRun({ threadId: thread.id, assistantId: config.OPENAI_ASSISTANT_ID });
+
+    const instructions = prompt.messages
+      .filter((m) => m.role === ROLE_SYSTEM)
+      .map((m) => (Array.isArray(m.content) ? m.content[0].text : m.content))
+      .join('\n');
+
+    await Promise.all(prompt.messages
+      .filter((m) => m.role !== ROLE_SYSTEM)
+      .map(({ role, content }) => {
+        const text = Array.isArray(content) ? content[0].text : content;
+        return createMessage({ threadId: thread.id, role, content: text });
+      }));
+
+    const { data: run } = await createRun({
+      threadId: thread.id,
+      assistantId: config.OPENAI_ASSISTANT_ID,
+      instructions,
+    });
     let status = run.status;
     while (status === 'queued' || status === 'in_progress') {
       await new Promise((r) => setTimeout(r, 1000));
