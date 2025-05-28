@@ -92,6 +92,11 @@ const deleteThread = async (threadId) => {
 // Message 相關操作
 const createMessage = async ({ threadId, role, content, attachments = [] }) => {
   try {
+    // 驗證 role 參數
+    if (!['user', 'assistant'].includes(role)) {
+      throw new Error(`Invalid role: '${role}'. Only 'user' and 'assistant' are supported in Assistant API.`);
+    }
+    
     const payload = { role, content };
     if (attachments.length > 0) {
       payload.attachments = attachments;
