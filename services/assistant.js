@@ -253,7 +253,7 @@ import axios from 'axios';
 import config from '../config/index.js';
 import { handleFulfilled, handleRejected, handleRequest } from './utils/index.js';
 
-import { ROLE_SYSTEM, ROLE_AI, ROLE_HUMAN } from './openai.js';
+import { ROLE_SYSTEM, ROLE_AI, ROLE_HUMAN } from '../../services/openai.js';
 
 console.log('ROLE_SYSTEM:', ROLE_SYSTEM);
 
