@@ -255,6 +255,8 @@ import { handleFulfilled, handleRejected, handleRequest } from './utils/index.js
 
 import { ROLE_SYSTEM, ROLE_AI, ROLE_HUMAN } from './openai.js';
 
+console.log('ROLE_SYSTEM:', ROLE_SYSTEM);
+
 //export const ROLE_SYSTEM = 'system';
 //export const ROLE_AI = 'assistant';
 //export const ROLE_HUMAN = 'user';
