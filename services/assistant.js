@@ -253,9 +253,11 @@ import axios from 'axios';
 import config from '../config/index.js';
 import { handleFulfilled, handleRejected, handleRequest } from './utils/index.js';
 
-export const ROLE_SYSTEM = 'system';
-export const ROLE_AI = 'assistant';
-export const ROLE_HUMAN = 'user';
+import { ROLE_SYSTEM, ROLE_AI, ROLE_HUMAN } from './openai.js';
+
+//export const ROLE_SYSTEM = 'system';
+//export const ROLE_AI = 'assistant';
+//export const ROLE_HUMAN = 'user';
 
 const client = axios.create({
   baseURL: config.OPENAI_BASE_URL,
