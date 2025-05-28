@@ -70,9 +70,9 @@ const client = axios.create({
 });
 
 // 請求攔截器
-client.interceptors.request.use((config) => {
-  config.headers.Authorization = `Bearer ${process.env.OPENAI_API_KEY || config.OPENAI_API_KEY}`;
-  return handleRequest(config);
+client.interceptors.request.use((requestConfig) => {
+  requestConfig.headers.Authorization = `Bearer ${process.env.OPENAI_API_KEY || config.OPENAI_API_KEY}`;
+  return handleRequest(requestConfig);
 });
 
 // 響應攔截器
